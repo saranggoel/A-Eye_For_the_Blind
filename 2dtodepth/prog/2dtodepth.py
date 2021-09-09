@@ -58,7 +58,7 @@ def main():
 	}
 	uid = "yQowLXfAMddiITuMFASMoKlSGyh1"  # unique user ID, must set before running
 	email = 'saranggoel06@gmail.com'
-	password = 'breadcake73'
+	password = '##########'
 	firebase = Firebase(config)
 	db = firebase.database()
 	auth = firebase.auth()
