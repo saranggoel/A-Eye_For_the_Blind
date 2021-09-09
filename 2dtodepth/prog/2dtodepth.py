@@ -56,7 +56,7 @@ def main():
 		"storageBucket": "a-eye-for-the-blind.appspot.com",
 		"databaseURL": "https://a-eye-for-the-blind-default-rtdb.firebaseio.com/",
 	}
-	uid = "yQowLXfAMddiITuMFASMoKlSGyh1"  # unique user ID, must set before running
+	uid = "^^^^^^^^^^^"  # unique user ID, must set before running
 	email = 'saranggoel06@gmail.com'
 	password = '##########'
 	firebase = Firebase(config)
