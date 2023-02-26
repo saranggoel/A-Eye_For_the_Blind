@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-database.js"></script>
+    <script src="form.js"> </script>
+
+    <style>
+        body {font-family: Arial, Helvetica, sans-serif;}
+        
+        /* Full-width input fields */
+        input[type=text], input[type=password], input[type=email] {
+          width: 100%;
+          padding: 12px 20px;
+          margin: 8px 0;
+          display: inline-block;
+          border: 1px solid #ccc;
+          box-sizing: border-box;
+        }
+        
+        /* Set a style for all buttons */
+        button {
+          background-color: #f2a053;
+          color: white;
+          padding: 14px 20px;
+          margin: 8px 0;
+          border: none;
+          cursor: pointer;
+          width: 100%;
+        }
+        
+        button:hover {
+          opacity: 0.8;
+        }
+
+        /* Extra styles for the cancel button */
+        .logincancelbtn {
+          width: auto;
+          padding: 10px 18px;
+          background-color: #f44336;
+        }
+        
+        /* Center the image and position the close button */
+        .loginimgcontainer {
+          text-align: center;
+          margin: 24px 0 12px 0;
+          position: relative;
+        }
+        
+        img.loginavatar {
+          width: 40%;
+          border-radius: 50%;
+        }
+        
+        .logincontainer {
+          padding: 16px;
+        }
+        
+        span.loginpsw {
+          float: right;
+          padding-top: 16px;
+        }
+        
+        /* The Modal (background) */
+        .loginmodal {
+          display: none; /* Hidden by default */
+          position: fixed; /* Stay in place */
+          z-index: 1; /* Sit on top */
+          left: 0;
+          top: 0;
+          width: 100%; /* Full width */
+          height: 100%; /* Full height */
+          overflow: auto; /* Enable scroll if needed */
+          background-color: rgb(255, 255, 255); /* Fallback color */
+          background-color: rgba(255, 255, 255); /* Black w/ opacity */
+          padding-top: 60px;
+        }
+        
+        /* Modal Content/Box */
+        .loginmodal-content {
+          background-color: #fefefe;
+          margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+          border: 1px solid #888;
+          width: 80%; /* Could be more or less, depending on screen size */
+        }
+        
+        /* The Close Button (x) */
+        .loginclose {
+          position: absolute;
+          right: 25px;
+          top: 0;
+          color: #000;
+          font-size: 35px;
+          font-weight: bold;
+        }
+        
+        .loginclose:hover,
+        .loginclose:focus {
+          color: red;
+          cursor: pointer;
+        }
+        
+        /* Add Zoom Animation */
+        .loginanimate {
+          -webkit-animation: animatezoom 0.6s;
+          animation: animatezoom 0.6s
+        }
+        
+        @-webkit-keyframes animatezoom {
+          from {-webkit-transform: scale(0)} 
+          to {-webkit-transform: scale(1)}
+        }
+          
+        @keyframes animatezoom {
+          from {transform: scale(0)} 
+          to {transform: scale(1)}
+        }
+        
+        /* Change styles for span and cancel button on extra small screens */
+        @media screen and (max-width: 300px) {
+          span.loginpsw {
+             display: block;
+             float: none;
+          }
+          .logincancelbtn {
+             width: 100%;
+          }
+        }
+
+
+        
+
+
+
+        /* Extra styles for the cancel button */
+        .signupcancelbtn {
+          width: auto;
+          padding: 10px 18px;
+          background-color: #f44336;
+        }
+        
+        /* Center the image and position the close button */
+        .signupimgcontainer {
+          text-align: center;
+          margin: 24px 0 12px 0;
+          position: relative;
+        }
+        
+        img.signupavatar {
+          width: 40%;
+          border-radius: 50%;
+        }
+        
+        .signupcontainer {
+          padding: 16px;
+        }
+        
+        span.signuppsw {
+          float: right;
+          padding-top: 16px;
+        }
+        
+        /* The Modal (background) */
+        .signupmodal {
+          display: none; /* Hidden by default */
+          position: fixed; /* Stay in place */
+          z-index: 1; /* Sit on top */
+          left: 0;
+          top: 0;
+          width: 100%; /* Full width */
+          height: 100%; /* Full height */
+          overflow: auto; /* Enable scroll if needed */
+          background-color: rgb(255, 255, 255); /* Fallback color */
+          background-color: rgba(255, 255, 255); /* Black w/ opacity */
+          padding-top: 60px;
+        }
+        
+        /* Modal Content/Box */
+        .signupmodal-content {
+          background-color: #fefefe;
+          margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+          border: 1px solid #888;
+          width: 80%; /* Could be more or less, depending on screen size */
+        }
+        
+        /* The Close Button (x) */
+        .signupclose {
+          position: absolute;
+          right: 25px;
+          top: 0;
+          color: #000;
+          font-size: 35px;
+          font-weight: bold;
+        }
+        
+        .signupclose:hover,
+        .signupclose:focus {
+          color: red;
+          cursor: pointer;
+        }
+        
+        /* Add Zoom Animation */
+        .signupanimate {
+          -webkit-animation: animatezoom 0.6s;
+          animation: animatezoom 0.6s
+        }
+        
+        /* Change styles for span and cancel button on extra small screens */
+        @media screen and (max-width: 300px) {
+          span.signuppsw {
+             display: block;
+             float: none;
+          }
+          .signupcancelbtn {
+             width: 100%;
+          }
+        }
+    </style>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>Home Page</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+    
+
+    <!-- Favicons -->
+    <link href="assets/img/favicon.jpg" rel="icon">
+    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Montserrat:300,400,500,700"
+        rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="assets/css/style.css" rel="stylesheet">
+
+    </div>
+
+    <!-- ======= Logo ======= -->
+    <header id="header" class="fixed-top d-flex align-items-center">
+        <div class="container d-flex justify-content-between">
+
+            <div class="logo">
+                <img src="assets/img/logo.png" alt="" class="img-fluid">
+            </div>
+
+            <nav id="navbar" class="navbar">
+                <ul>
+                    <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
+                    <li><a class="nav-link scrollto" href="#login">Login</a></li>
+                <i class="bi bi-list mobile-nav-toggle"></i>
+            </nav><!-- .navbar -->
+
+        </div>
+    </header><!-- #header -->
+
+    <!-- ======= Hero Section ======= -->
+    <section id="hero" class="clearfix">
+        <div class="container" data-aos="fade-up">
+
+            <div class="hero-img" data-aos="zoom-out" data-aos-delay="200">
+                <img width=600px src="assets/img/hero.png" alt="" class="img-fluid">
+            </div>
+
+            <div class="hero-info" data-aos="zoom-in" data-aos-delay="100">
+                <h2>Aiming to provide blind people more <span>freedom</span> and <span>safety</span> while travelling</h2>
+                    <a href="#login" class="myButton scrollto">Login</a>
+                </div>
+            </div>
+
+        </div>
+    </section><!-- End Hero Section -->
+
+    <main id="main">
+
+        <!-- ======= Login Section ======= -->
+        <section id="login">
+            <div class="container" data-aos="fade-up">
+
+                <header class="section-header">
+                    <h3><br><br><br><br><br>Log In</h3>
+                    <p>If you have an account, log in to access A-EYE for the Blind!</p>
+                </header>
+
+
+                <!-- Button to open the modal login form -->
+                <button onclick="document.getElementById('id01').style.display='block'">Login</button>
+
+                <!-- The Modal -->
+                <div id="id01" class="loginmodal">
+                <span onclick="document.getElementById('id01').style.display='none'"
+                class="loginclose" title="Close Modal">&times;</span>
+
+                <!-- Modal Content -->
+                <div class="loginmodal-content loginanimate">
+
+                    <div class="logincontainer">
+                    <label for="email"><b>Email</b></label>
+                    <input type="email" placeholder="Enter Email" name="email" id="email" required>
+
+                    <label for="psw"><b>Password</b></label>
+                    <input type="password" placeholder="Enter Password" name="password" id="password" required>
+
+                    <button type="submit" onclick = "signIn()" id = "signIn">Login</button>
+                    
+                    </div>
+
+                    <div class="logincontainer" style="background-color:#f1f1f1">
+                    <button type="button" onclick="document.getElementById('id01').style.display='none'" class="logincancelbtn">Cancel</button>
+                
+                    </div>
+                </div>
+                </div>     
+                
+                
+                <!-- Button to open the modal login form -->
+                <h3 class="h3special">or</h3>
+                <button onclick="document.getElementById('id02').style.display='block'">Sign Up</button>
+                
+
+                <!-- The Modal -->
+                <div id="id02" class="signupmodal">
+                <span onclick="document.getElementById('id02').style.display='none'"
+                class="signupclose" title="Close Modal">&times;</span>
+
+                <!-- Modal Content -->
+                <div class="signupmodal-content signupanimate">
+
+                    <div class="signupcontainer">
+                    <label for="fname"><b>First Name</b></label>
+                    <input type="text" placeholder="Enter First Name" name="fname" id = "fname" required>
+
+                    <label for="lname"><b>Last Name</b></label>
+                    <input type="text" placeholder="Enter Last Name" name="lname" id = "lname" required>
+
+                    <label for="email"><b>Email</b></label>
+                    <input type="email" placeholder="Enter Email" name="email" id="email2" required>
+
+                    <label for="psw"><b>Password</b></label>
+                    <input type="password" placeholder="Enter Password" name="password" id="password2" required>
+
+                    <button type="submit" id = "signUp" onclick = "signUp()" >Sign Up</button>
+                    
+                    </div>
+
+                    <div class="signupcontainer" style="background-color:#f1f1f1">
+                    <button type="button" onclick="document.getElementById('id02').style.display='none'" class="signupcancelbtn">Cancel</button>
+                  
+                    </div>
+                </div>
+                </div> 
+                <br><br><br><br><br><br><br><br><br><br><br><br>
+                
+            </div>
+        </section><!-- End Login Section -->
+                
+        
+    </main><!-- End #main -->
+
+
+    <!-- ======= Footer ======= -->
+    <footer id="footer">
+        <div class="footer-top">
+            <div class="container">
+                <div class="row">
+
+                    
+
+        <div class="container">
+        </div>
+    </footer><!-- End Footer -->
+
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+    <!-- Vendor JS Files -->
+    <script src="assets/vendor/aos/aos.js"></script>
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="assets/vendor/php-email-form/validate.js"></script>
+    <script src="assets/vendor/purecounter/purecounter.js"></script>
+    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="assets/js/main.js"></script>
+
+    </body>
+
+</html>
